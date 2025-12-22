@@ -263,3 +263,16 @@ p{ margin: 0 0 10px; }
 @media (min-width: 1024px){
   .grid{ grid-template-columns: repeat(4, 1fr); }
 }
+
+/* Padding consistente: más aire en mobile, normal en desktop */
+.contenedor{
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+@media (min-width: 768px){
+  .contenedor{
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}

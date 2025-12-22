@@ -1,22 +1,27 @@
 /* =========================
-   PALETA + BASE (mobile first) — OPCIÓN A (CLARO SUAVE)
+   PALETA + BASE (mobile first)
    ========================= */
 :root{
-  --dust-grey: #dad7cdff;
-  --dry-sage:  #a3b18aff;
-  --fern:      #588157ff;
-  --hunter:    #3a5a40ff;
-  --pine:      #344e41ff;
+  /* Paleta nueva */
+  --vanilla-custard: #d0db97ff;
+  --emerald:         #69b578ff;
+  --fern:            #3a7d44ff;
+  --dark-spruce:     #254d32ff;
+  --shadow-grey:     #181d27ff;
 
   /* UI */
-  --bg: var(--dust-grey);          /* fondo suave (no blanco) */
-  --text: var(--pine);             /* texto oscuro */
-  --muted: rgba(52, 78, 65, .78);  /* texto secundario */
-  --surface: rgba(255,255,255,.78);/* cards translúcidas */
-  --border: rgba(52, 78, 65, .14);
+  --bg: var(--vanilla-custard);          /* claro, verdoso */
+  --text: var(--shadow-grey);            /* texto bien oscuro */
+  --muted: rgba(24, 29, 39, .72);
+
+  --surface: rgba(255,255,255,.80);      /* cards suaves */
+  --border: rgba(24, 29, 39, .12);
 
   --radius: 18px;
-  --shadow: 0 10px 28px rgba(0,0,0,.08);
+  --shadow: 0 10px 28px rgba(0,0,0,.10);
+
+  /* altura aprox del menú sticky (para anclas) */
+  --sticky-offset: 74px;
 }
 
 /* Smooth scroll para anchors internas */
@@ -37,12 +42,18 @@ body{
 }
 
 img{ max-width: 100%; display: block; }
-a{ color: var(--hunter); text-decoration: none; }
+
+a{ color: var(--fern); text-decoration: none; }
 a:hover{ text-decoration: underline; }
 a:focus-visible{
-  outline: 3px solid var(--dry-sage);
+  outline: 3px solid var(--emerald);
   outline-offset: 3px;
   border-radius: 10px;
+}
+
+/* Para que al saltar a #seccion no quede tapado por el menú sticky */
+section, header, main, footer{
+  scroll-margin-top: var(--sticky-offset);
 }
 
 /* =========================
@@ -53,7 +64,6 @@ a:focus-visible{
   margin: 0 auto;
   padding: 0 16px;
 }
-
 .bloque{ padding: 24px 0; }
 .muted{ color: var(--muted); }
 
@@ -74,8 +84,8 @@ a:focus-visible{
    HERO
    ========================= */
 .hero{
-  background: linear-gradient(180deg, var(--pine), var(--hunter));
-  color: var(--dust-grey);
+  background: linear-gradient(180deg, var(--shadow-grey), var(--dark-spruce));
+  color: rgba(255,255,255,.92);
 }
 
 .hero__grid{
@@ -90,11 +100,10 @@ a:focus-visible{
   height: 120px;
   border-radius: 999px;
   overflow: hidden;
-  border: 4px solid rgba(218,215,205,.7);
-  box-shadow: 0 10px 22px rgba(0,0,0,.18);
+  border: 4px solid rgba(208,219,151,.75);
+  box-shadow: 0 10px 22px rgba(0,0,0,.22);
 }
 
-/* Tipografía del hero */
 .hero__texto h1{
   margin: 0 0 6px;
   font-size: 32px;
@@ -106,7 +115,7 @@ a:focus-visible{
   opacity: .92;
 }
 
-/* Botones CTA */
+/* CTA botones */
 .cta{
   margin-top: 14px;
   display: flex;
@@ -118,26 +127,26 @@ a:focus-visible{
   display: inline-block;
   padding: 10px 14px;
   border-radius: 14px;
-  border: 2px solid var(--fern);
-  background: var(--fern);
-  color: var(--dust-grey);
+  border: 2px solid var(--emerald);
+  background: var(--emerald);
+  color: var(--shadow-grey);
   font-weight: 800;
 }
 .boton:hover{ text-decoration: none; filter: brightness(1.03); }
 
 .boton--sec{
   background: transparent;
-  border-color: rgba(218,215,205,.75);
-  color: var(--dust-grey);
+  border-color: rgba(208,219,151,.75);
+  color: rgba(255,255,255,.92);
 }
 
 /* =========================
    MENU
    ========================= */
 .menu{
-  background: rgba(218,215,205,.92);
-  border-top: 1px solid rgba(218,215,205,.35);
-  border-bottom: 1px solid rgba(0,0,0,.06);
+  background: rgba(208,219,151,.92); /* vanilla-custard */
+  border-top: 1px solid rgba(255,255,255,.25);
+  border-bottom: 1px solid rgba(0,0,0,.08);
 
   position: sticky;
   top: 0;
@@ -158,12 +167,12 @@ a:focus-visible{
   display: inline-block;
   padding: 8px 10px;
   border-radius: 12px;
-  color: var(--pine);
-  font-weight: 700;
+  color: var(--shadow-grey);
+  font-weight: 800;
 }
 .menu a:hover{
   text-decoration: none;
-  background: rgba(163,177,138,.28);
+  background: rgba(105,181,120,.22); /* emerald suave */
 }
 
 /* =========================
@@ -174,7 +183,6 @@ h2{
   font-size: 20px;
   letter-spacing: -0.2px;
 }
-
 p{ margin: 0 0 10px; }
 
 /* Chips */
@@ -187,13 +195,13 @@ p{ margin: 0 0 10px; }
   flex-wrap: wrap;
 }
 .chips li{
-  border: 1px solid rgba(52,78,65,.18);
-  background: rgba(255,255,255,.35);
+  border: 1px solid rgba(24,29,39,.14);
+  background: rgba(255,255,255,.38);
   padding: 6px 10px;
   border-radius: 999px;
   font-size: 14px;
-  font-weight: 700;
-  color: var(--pine);
+  font-weight: 800;
+  color: var(--shadow-grey);
 }
 
 /* Cards */
@@ -216,18 +224,17 @@ p{ margin: 0 0 10px; }
   font-size: 16px;
 }
 
-/* Galería (si la usás en "Trabajos seleccionados") */
+/* Galería */
 .grid{
   display: grid;
   gap: 12px;
   margin-top: 12px;
 }
-
 .grid figure{ margin: 0; }
 
 .grid img{
   border-radius: 14px;
-  border: 1px solid rgba(52,78,65,.14);
+  border: 1px solid rgba(24,29,39,.10);
 }
 
 .grid figcaption{
@@ -259,8 +266,8 @@ p{ margin: 0 0 10px; }
 /* Footer */
 .pie{
   margin-top: 24px;
-  background: var(--pine);
-  color: var(--dust-grey);
+  background: var(--shadow-grey);
+  color: rgba(255,255,255,.90);
 }
 .pie p{
   margin: 0;
@@ -269,7 +276,7 @@ p{ margin: 0 0 10px; }
 }
 
 /* =========================
-   BREAKPOINTS (mejora desktop)
+   BREAKPOINTS
    ========================= */
 @media (min-width: 768px){
   .hero__grid{
@@ -279,11 +286,8 @@ p{ margin: 0 0 10px; }
   }
 
   .hero__texto h1{ font-size: 40px; }
-
   .cards{ grid-template-columns: repeat(3, 1fr); }
-
   .grid{ grid-template-columns: repeat(2, 1fr); }
-
   h2{ font-size: 22px; }
 }
 

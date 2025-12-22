@@ -1,6 +1,3 @@
-/* =========================
-   PALETA + BASE (mobile first)
-   ========================= */
 :root{
   /* Paleta nueva */
   --vanilla-custard: #d0db97ff;
@@ -9,22 +6,23 @@
   --dark-spruce:     #254d32ff;
   --shadow-grey:     #181d27ff;
 
-  /* UI */
-  --bg: var(--vanilla-custard);          /* claro, verdoso */
-  --text: var(--shadow-grey);            /* texto bien oscuro */
-  --muted: rgba(24, 29, 39, .72);
+  /* UI (más suave para los ojos) */
+  --bg: #10151d;                 /* fondo general: gris azulado oscuro (suave) */
+  --text: rgba(255,255,255,.90); /* texto principal */
+  --muted: rgba(255,255,255,.72);
 
-  --surface: rgba(255,255,255,.80);      /* cards suaves */
-  --border: rgba(24, 29, 39, .12);
+  /* Superficies (a tono con la paleta) */
+  --surface: rgba(37, 77, 50, .52); /* dark-spruce translúcido */
+  --surface-2: rgba(24, 29, 39, .55); /* shadow-grey translúcido */
+  --border: rgba(208,219,151,.14);
 
   --radius: 18px;
-  --shadow: 0 10px 28px rgba(0,0,0,.10);
+  --shadow: 0 14px 40px rgba(0,0,0,.35);
 
-  /* altura aprox del menú sticky (para anclas) */
   --sticky-offset: 74px;
 }
 
-/* Smooth scroll para anchors internas */
+/* Smooth scroll */
 html{ scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce){
   html{ scroll-behavior: auto; }
@@ -43,7 +41,7 @@ body{
 
 img{ max-width: 100%; display: block; }
 
-a{ color: var(--fern); text-decoration: none; }
+a{ color: var(--vanilla-custard); text-decoration: none; }
 a:hover{ text-decoration: underline; }
 a:focus-visible{
   outline: 3px solid var(--emerald);
@@ -51,14 +49,9 @@ a:focus-visible{
   border-radius: 10px;
 }
 
-/* Para que al saltar a #seccion no quede tapado por el menú sticky */
-section, header, main, footer{
-  scroll-margin-top: var(--sticky-offset);
-}
+section, header, main, footer{ scroll-margin-top: var(--sticky-offset); }
 
-/* =========================
-   UTILIDADES
-   ========================= */
+/* Layout helpers */
 .contenedor{
   width: min(100%, 980px);
   margin: 0 auto;
@@ -72,17 +65,16 @@ section, header, main, footer{
   position: absolute;
   left: -999px;
   top: 10px;
-  background: #fff;
-  border: 1px solid var(--border);
+  background: rgba(255,255,255,.92);
+  color: #111;
+  border: 1px solid rgba(0,0,0,.12);
   padding: 10px 12px;
   border-radius: 12px;
-  box-shadow: var(--shadow);
+  box-shadow: 0 10px 28px rgba(0,0,0,.18);
 }
 .skip:focus{ left: 16px; z-index: 9999; }
 
-/* =========================
-   HERO
-   ========================= */
+/* HERO */
 .hero{
   background: linear-gradient(180deg, var(--shadow-grey), var(--dark-spruce));
   color: rgba(255,255,255,.92);
@@ -100,8 +92,8 @@ section, header, main, footer{
   height: 120px;
   border-radius: 999px;
   overflow: hidden;
-  border: 4px solid rgba(208,219,151,.75);
-  box-shadow: 0 10px 22px rgba(0,0,0,.22);
+  border: 4px solid rgba(208,219,151,.55);
+  box-shadow: 0 10px 22px rgba(0,0,0,.28);
 }
 
 .hero__texto h1{
@@ -110,48 +102,25 @@ section, header, main, footer{
   letter-spacing: -0.4px;
 }
 
-.bajada{
-  margin: 0;
-  opacity: .92;
+/* Link del H1 sin look de link */
+.hero__home{
+  color: inherit;
+  text-decoration: none;
 }
+.hero__home:hover{ text-decoration: underline; }
 
-/* CTA botones */
-.cta{
-  margin-top: 14px;
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
+.bajada{ margin: 0; opacity: .92; }
 
-.boton{
-  display: inline-block;
-  padding: 10px 14px;
-  border-radius: 14px;
-  border: 2px solid var(--emerald);
-  background: var(--emerald);
-  color: var(--shadow-grey);
-  font-weight: 800;
-}
-.boton:hover{ text-decoration: none; filter: brightness(1.03); }
-
-.boton--sec{
-  background: transparent;
-  border-color: rgba(208,219,151,.75);
-  color: rgba(255,255,255,.92);
-}
-
-/* =========================
-   MENU
-   ========================= */
+/* MENU (más sobrio, menos brillante) */
 .menu{
-  background: rgba(208,219,151,.92); /* vanilla-custard */
-  border-top: 1px solid rgba(255,255,255,.25);
-  border-bottom: 1px solid rgba(0,0,0,.08);
+  background: rgba(24, 29, 39, .62); /* shadow-grey suave */
+  border-top: 1px solid rgba(255,255,255,.08);
+  border-bottom: 1px solid rgba(255,255,255,.10);
 
   position: sticky;
   top: 0;
   z-index: 50;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
 }
 
 .menu ul{
@@ -167,17 +136,15 @@ section, header, main, footer{
   display: inline-block;
   padding: 8px 10px;
   border-radius: 12px;
-  color: var(--shadow-grey);
+  color: rgba(255,255,255,.88);
   font-weight: 800;
 }
 .menu a:hover{
   text-decoration: none;
-  background: rgba(105,181,120,.22); /* emerald suave */
+  background: rgba(105,181,120,.18); /* emerald suave */
 }
 
-/* =========================
-   SECCIONES / COMPONENTES
-   ========================= */
+/* Tipografía */
 h2{
   margin: 0 0 10px;
   font-size: 20px;
@@ -195,13 +162,13 @@ p{ margin: 0 0 10px; }
   flex-wrap: wrap;
 }
 .chips li{
-  border: 1px solid rgba(24,29,39,.14);
-  background: rgba(255,255,255,.38);
+  border: 1px solid rgba(208,219,151,.16);
+  background: rgba(37, 77, 50, .30);
   padding: 6px 10px;
   border-radius: 999px;
   font-size: 14px;
   font-weight: 800;
-  color: var(--shadow-grey);
+  color: rgba(255,255,255,.88);
 }
 
 /* Cards */
@@ -212,7 +179,7 @@ p{ margin: 0 0 10px; }
 }
 
 .card{
-  background: var(--surface);
+  background: var(--surface);                 /* a tono (verde oscuro suave) */
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 14px;
@@ -222,6 +189,7 @@ p{ margin: 0 0 10px; }
 .card h3{
   margin: 0 0 6px;
   font-size: 16px;
+  color: rgba(255,255,255,.92);
 }
 
 /* Galería */
@@ -230,17 +198,18 @@ p{ margin: 0 0 10px; }
   gap: 12px;
   margin-top: 12px;
 }
+
 .grid figure{ margin: 0; }
 
 .grid img{
   border-radius: 14px;
-  border: 1px solid rgba(24,29,39,.10);
+  border: 1px solid rgba(255,255,255,.10);
 }
 
 .grid figcaption{
   padding-top: 8px;
   font-size: 14px;
-  color: var(--muted);
+  color: rgba(255,255,255,.72);
 }
 
 /* Lista */
@@ -259,15 +228,15 @@ p{ margin: 0 0 10px; }
 }
 .nota{
   margin-top: 10px;
-  color: var(--muted);
+  color: rgba(255,255,255,.72);
   font-size: 14px;
 }
 
 /* Footer */
 .pie{
   margin-top: 24px;
-  background: var(--shadow-grey);
-  color: rgba(255,255,255,.90);
+  background: rgba(24, 29, 39, .85);
+  color: rgba(255,255,255,.88);
 }
 .pie p{
   margin: 0;
@@ -275,9 +244,7 @@ p{ margin: 0 0 10px; }
   opacity: .95;
 }
 
-/* =========================
-   BREAKPOINTS
-   ========================= */
+/* BREAKPOINTS */
 @media (min-width: 768px){
   .hero__grid{
     grid-template-columns: 140px 1fr;
@@ -286,8 +253,10 @@ p{ margin: 0 0 10px; }
   }
 
   .hero__texto h1{ font-size: 40px; }
+
   .cards{ grid-template-columns: repeat(3, 1fr); }
   .grid{ grid-template-columns: repeat(2, 1fr); }
+
   h2{ font-size: 22px; }
 }
 

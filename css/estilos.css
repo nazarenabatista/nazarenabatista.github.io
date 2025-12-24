@@ -275,6 +275,28 @@ p{ margin: 0 0 10px; }
   h2{ font-size: 22px; }
 }
 
+/* FIX: evitar texto vertical o "columna rara" en el hero */
+.hero__texto,
+.hero__texto *{
+  writing-mode: horizontal-tb;
+  text-orientation: mixed;
+  transform: none;
+  white-space: normal;
+}
+
+/* Asegurar ancho cómodo del bloque del hero */
+.hero__texto{
+  max-width: 46ch;
+}
+
+/* Bajadas: que sean párrafos normales */
+.bajada{
+  display: block;
+  margin: 6px 0 0;
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+
 @media (min-width: 1024px){
   .grid{ grid-template-columns: repeat(4, 1fr); }
 }

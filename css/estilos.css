@@ -86,14 +86,6 @@ section, header, main, footer{ scroll-margin-top: var(--sticky-offset); }
   overflow: hidden;
 }
 
-.hero{
-  background:
-    linear-gradient(180deg, rgba(24,29,39,.55), rgba(24,29,39,.20)),
-    url("img/hero-bg.png") center / cover no-repeat;
-  color: rgba(255,255,255,.92);
-  position: relative;
-}
-
 /* capa suave para legibilidad */
 .hero::before{
   content:"";

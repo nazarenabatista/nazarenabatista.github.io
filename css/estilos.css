@@ -76,15 +76,38 @@ section, header, main, footer{ scroll-margin-top: var(--sticky-offset); }
 
 /* HERO */
 .hero{
-  background: linear-gradient(180deg, var(--shadow-grey), var(--dark-spruce));
+  /* Fallback solo CSS */
+  background:
+    radial-gradient(900px 380px at 30% 65%, rgba(105,181,120,.35), transparent 60%),
+    radial-gradient(720px 320px at 75% 35%, rgba(58,125,68,.28), transparent 55%),
+    linear-gradient(180deg, var(--shadow-grey), var(--dark-spruce));
   color: rgba(255,255,255,.92);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero{
+  background:
+    linear-gradient(180deg, rgba(24,29,39,.55), rgba(24,29,39,.20)),
+    url("img/hero-bg.png") center / cover no-repeat;
+  color: rgba(255,255,255,.92);
+  position: relative;
+}
+
+/* capa suave para legibilidad */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(180deg, rgba(24,29,39,.45), rgba(24,29,39,.15));
+  pointer-events:none;
 }
 
 .hero__grid{
-  padding: 28px 0 18px;
+  position: relative; /* para quedar arriba del overlay */
+  padding: 34px 0 22px;
   display: grid;
-  gap: 16px;
-  align-items: center;
+  gap: 14px;
 }
 
 .avatar{

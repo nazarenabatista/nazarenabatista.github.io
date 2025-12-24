@@ -12,6 +12,37 @@
   <link rel="stylesheet" href="css/estilos.css">
 </head>
 
+<script>
+  // 1) Si la página se carga con hash, lo elimina y vuelve arriba.
+  window.addEventListener("load", () => {
+    if (location.hash) {
+      history.replaceState(null, "", location.pathname + location.search);
+      window.scrollTo(0, 0);
+    }
+  });
+
+  // 2) Menú: hace scroll a la sección SIN dejar #seccion en la URL.
+  document.querySelectorAll('.menu a[href^="#"]').forEach(link => {
+    link.addEventListener("click", (e) => {
+      const hash = link.getAttribute("href");
+      if (!hash || hash === "#") return;
+
+      const target = document.querySelector(hash);
+      if (!target) return;
+
+      e.preventDefault();
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+
+      // Accesibilidad: foco en la sección sin mover el scroll nuevamente
+      target.setAttribute("tabindex", "-1");
+      target.focus({ preventScroll: true });
+
+      // Limpia el hash para que al recargar no baje
+      history.replaceState(null, "", location.pathname + location.search);
+    });
+  });
+</script>
+  
 <body>
   <a class="skip" href="#contenido">Saltar al contenido</a>
 

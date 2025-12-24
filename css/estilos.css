@@ -1,19 +1,19 @@
 :root{
-  /* Paleta nueva */
+  /* Paleta */
   --vanilla-custard: #d0db97ff;
   --emerald:         #69b578ff;
   --fern:            #3a7d44ff;
   --dark-spruce:     #254d32ff;
   --shadow-grey:     #181d27ff;
 
-  /* UI (más suave para los ojos) */
-  --bg: #10151d;                 /* fondo general: gris azulado oscuro (suave) */
-  --text: rgba(255,255,255,.90); /* texto principal */
+  /* UI (oscuro suave) */
+  --bg: #10151d;
+  --text: rgba(255,255,255,.90);
   --muted: rgba(255,255,255,.72);
 
-  /* Superficies (a tono con la paleta) */
-  --surface: rgba(37, 77, 50, .52); /* dark-spruce translúcido */
-  --surface-2: rgba(24, 29, 39, .55); /* shadow-grey translúcido */
+  /* Superficies */
+  --surface: rgba(37, 77, 50, .52);
+  --surface-2: rgba(24, 29, 39, .55);
   --border: rgba(208,219,151,.14);
 
   --radius: 18px;
@@ -49,14 +49,23 @@ a:focus-visible{
   border-radius: 10px;
 }
 
+/* Para anclas con menú sticky */
 section, header, main, footer{ scroll-margin-top: var(--sticky-offset); }
 
-/* Layout helpers */
+/* Layout */
 .contenedor{
   width: min(100%, 980px);
   margin: 0 auto;
-  padding: 0 16px;
+  padding-left: 20px;   /* consistente en mobile */
+  padding-right: 20px;
 }
+@media (min-width: 768px){
+  .contenedor{
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
 .bloque{ padding: 24px 0; }
 .muted{ color: var(--muted); }
 
@@ -76,7 +85,6 @@ section, header, main, footer{ scroll-margin-top: var(--sticky-offset); }
 
 /* HERO */
 .hero{
-  /* Fallback solo CSS */
   background:
     radial-gradient(900px 380px at 30% 65%, rgba(105,181,120,.35), transparent 60%),
     radial-gradient(720px 320px at 75% 35%, rgba(58,125,68,.28), transparent 55%),
@@ -86,7 +94,6 @@ section, header, main, footer{ scroll-margin-top: var(--sticky-offset); }
   overflow: hidden;
 }
 
-/* capa suave para legibilidad */
 .hero::before{
   content:"";
   position:absolute;
@@ -96,12 +103,37 @@ section, header, main, footer{ scroll-margin-top: var(--sticky-offset); }
 }
 
 .hero__grid{
-  position: relative; /* para quedar arriba del overlay */
+  position: relative;
   padding: 34px 0 22px;
   display: grid;
   gap: 14px;
+  grid-template-columns: 1fr; /* CLAVE: sin avatar */
 }
 
+.hero__texto{
+  max-width: 56ch; /* ancho cómodo */
+}
+
+.hero__texto h1{
+  margin: 0 0 6px;
+  font-size: 32px;
+  letter-spacing: -0.4px;
+}
+
+.hero__home{
+  color: inherit;
+  text-decoration: none;
+}
+.hero__home:hover{ text-decoration: underline; }
+
+.bajada{
+  display: block;
+  margin: 6px 0 0;
+  line-height: 1.35;
+  opacity: .92;
+}
+
+/* (Opcional) Avatar, por si vuelve a usarse */
 .avatar{
   width: 120px;
   height: 120px;
@@ -111,24 +143,9 @@ section, header, main, footer{ scroll-margin-top: var(--sticky-offset); }
   box-shadow: 0 10px 22px rgba(0,0,0,.28);
 }
 
-.hero__texto h1{
-  margin: 0 0 6px;
-  font-size: 32px;
-  letter-spacing: -0.4px;
-}
-
-/* Link del H1 sin look de link */
-.hero__home{
-  color: inherit;
-  text-decoration: none;
-}
-.hero__home:hover{ text-decoration: underline; }
-
-.bajada{ margin: 0; opacity: .92; }
-
-/* MENU (más sobrio, menos brillante) */
+/* MENU */
 .menu{
-  background: rgba(24, 29, 39, .62); /* shadow-grey suave */
+  background: rgba(24, 29, 39, .62);
   border-top: 1px solid rgba(255,255,255,.08);
   border-bottom: 1px solid rgba(255,255,255,.10);
 
@@ -156,10 +173,10 @@ section, header, main, footer{ scroll-margin-top: var(--sticky-offset); }
 }
 .menu a:hover{
   text-decoration: none;
-  background: rgba(105,181,120,.18); /* emerald suave */
+  background: rgba(105,181,120,.18);
 }
 
-/* Tipografía */
+/* Tipografía general */
 h2{
   margin: 0 0 10px;
   font-size: 20px;
@@ -194,7 +211,7 @@ p{ margin: 0 0 10px; }
 }
 
 .card{
-  background: var(--surface);                 /* a tono (verde oscuro suave) */
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 14px;
@@ -262,9 +279,8 @@ p{ margin: 0 0 10px; }
 /* BREAKPOINTS */
 @media (min-width: 768px){
   .hero__grid{
-    grid-template-columns: 140px 1fr;
-    gap: 22px;
     padding: 42px 0 22px;
+    gap: 18px;
   }
 
   .hero__texto h1{ font-size: 40px; }
@@ -275,41 +291,6 @@ p{ margin: 0 0 10px; }
   h2{ font-size: 22px; }
 }
 
-/* FIX: evitar texto vertical o "columna rara" en el hero */
-.hero__texto,
-.hero__texto *{
-  writing-mode: horizontal-tb;
-  text-orientation: mixed;
-  transform: none;
-  white-space: normal;
-}
-
-/* Asegurar ancho cómodo del bloque del hero */
-.hero__texto{
-  max-width: 46ch;
-}
-
-/* Bajadas: que sean párrafos normales */
-.bajada{
-  display: block;
-  margin: 6px 0 0;
-  line-height: 1.35;
-  letter-spacing: 0;
-}
-
 @media (min-width: 1024px){
   .grid{ grid-template-columns: repeat(4, 1fr); }
-}
-
-/* Padding consistente: más aire en mobile, normal en desktop */
-.contenedor{
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-@media (min-width: 768px){
-  .contenedor{
-    padding-left: 16px;
-    padding-right: 16px;
-  }
 }
